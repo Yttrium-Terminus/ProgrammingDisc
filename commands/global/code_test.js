@@ -13,6 +13,15 @@ module.exports = {
     message.channel.send(
       "Enter your input within the next 10 seconds (Type `ex!` to exit): "
     );
+    var output = "";
+    var config = {
+      stdio: {
+        write: function (s) {
+          output += s;
+        },
+      },
+      unsigned_overflow: "error", // can be "error"(default), "warn" or "ignore"
+    };
     message.channel
       .awaitMessages((m) => m.author.id == message.author.id, {
         max: 1,
@@ -31,14 +40,5 @@ module.exports = {
       .catch(() => {
         message.reply("No answer after 10 seconds, operation canceled.");
       });
-    var output = "";
-    var config = {
-      stdio: {
-        write: function (s) {
-          output += s;
-        },
-      },
-      unsigned_overflow: "error", // can be "error"(default), "warn" or "ignore"
-    };
   },
 };
