@@ -13,7 +13,7 @@ module.exports = {
       let t = message.content.split(" ").slice(1);
       let p = await tio(toString(t), 'python3');
       message.channel.send("Cont : " + t.join(" ")).cleanContent;
-      message.channel.send(p);
+      message.channel.send("Cont2: " + p);
     } catch (e) {
       console.log(e);
     }
