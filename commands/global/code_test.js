@@ -9,7 +9,8 @@ module.exports = {
   },
   run: async (bot, message, args) => {
     try {
-      message.channel.send(message.content.split(" ").slice(1).join(" ")).cleanContent;
+      let t = message.content.split(" ").slice(1);
+      message.channel.send(t.join(" ")).cleanContent;
     } catch (e) {
       console.log(e);
     }
