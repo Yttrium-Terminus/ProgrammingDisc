@@ -109,8 +109,12 @@ module.exports = {
           cmd: "g++",
           options: { timeout: 15000 },
         };
+        const embed4 = new MessageEmbed()
+        .setTitle("Enter input! | 10 Second limit")
+        .setDescription("Enter your inputs for your program below. You have a 10 second window.\n*Program shouldn't have input? Try using the command `"+content.prefix+"cpp`! Or contact my developer: ex-exoad#9292*")
+        .setColor("YELLOW")
 
-        message.channel.send("Enter val: ").then(() => {
+        message.channel.send(embed4).then(() => {
           message.channel
             .awaitMessages(filter, {
               max: 1,
