@@ -15,8 +15,8 @@ module.exports = {
     try {
       let filter = (m) => m.author.id === message.author.id;
 
-      var c = message.content.split(" ").slice(1);
-      var codeStr = c.join(" ");
+      var code = message.content.split(" ").slice(1);
+      var codeStr = code.join(" ");
       if (codeStr.substring(0, 3) === "```" && codeStr.slice(-3) == "```") {
         console.log("Found...");
         codeStr = codeStr.substring(3);
