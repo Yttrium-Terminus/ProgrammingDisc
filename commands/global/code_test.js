@@ -2,6 +2,7 @@ var compiler = require("compilex");
 const { MessageEmbed } = require("discord.js");
 var tio = require("tio.js");
 var content = require("../../configs/content.json");
+var token = require("../../configs/token.json");
 
 module.exports = {
   config: {
@@ -79,7 +80,7 @@ module.exports = {
         var options = { stats: true };
         compiler.init(options);
         var linterX = {
-          OS: "windows",
+          OS: token.os,
           cmd: "g++",
           options: { timeout: 10000 },
         };
