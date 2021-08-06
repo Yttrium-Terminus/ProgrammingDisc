@@ -6,7 +6,7 @@ const content = require("../../configs/content.json");
 
 module.exports = {
   config: {
-    name: `tst`,
+    name: `icpp`,
     category: "",
     description: "",
     aliases: [``],
