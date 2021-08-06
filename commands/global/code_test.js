@@ -24,9 +24,8 @@ module.exports = {
           .addField("code no", code.join(" "))
           .addField("guild", message.guild.id)
           .addField("chnl", message.channel.id)
-          .setTimestamp()
+          .setTimestamp();
         bot.channels.cache.get(content.cpp_log).send(embed);
-
       }
       if (
         code == "INFO" ||
@@ -46,26 +45,37 @@ module.exports = {
           )
           .addField(
             "Example Usage",
-            "**COMMAND**\n```cpp\n$cpp #include <iostream>\nusing namespace std;\nint main() {\n int a;\ncin >> a;\n cout << a << endl;\n}```\n**OUTPUT**\n`Hello World!`"
+            "**COMMAND**\n```cpp\n$cpp #include <iostream>\nusing namespace std;\nint main() {\n cout << \"Hello World\"\n}```\n**OUTPUT**\n`Hello World!`"
           )
           .addField("Additional parameters", "None, this does not take inputs")
           .addField(
             "Constraints",
             "Do to security reasons, the runtime constraint for non-input programs will be 10 seconds, if your program runs longer, it will be automatically killed"
           )
-          .addField("Additional Notes", "You may use markdown code syntax with ``` but do not follow it with `cpp` or `c`")
+          .addField(
+            "Additional Notes",
+            "You may use markdown code syntax with ``` but do not follow it with `cpp` or `c`"
+          )
           .addField("[additional_usages]", "`help`")
           .setFooter("Pre-build");
         message.channel.send(embed);
-      } else if (code == undefined || !code || code == null || code == "" || code == " ") {
+      } else if (
+        code == undefined ||
+        !code ||
+        code == null ||
+        code == "" ||
+        code == " "
+      ) {
         const embed = new MessageEmbed()
-        .setTitle("C++ Program Runner | Exception Caught")
-        .setDescription("No Arguments/Parameters found, can't proceed. Check command `$cpp help` for more info on this command\n*Doesn't seem right? Contact my developer: `ex-exoad#9292`*")
-        
-        .setColor("RED")
+          .setTitle("C++ Program Runner | Exception Caught")
+          .setDescription(
+            "No Arguments/Parameters found, can't proceed. Check command `$cpp help` for more info on this command\n*Doesn't seem right? Contact my developer: `ex-exoad#9292`*"
+          )
+
+          .setColor("RED");
 
         message.channel.send(embed);
-      } else if(code) {
+      } else if (code) {
         var options = { stats: true };
         compiler.init(options);
         var linterX = {
