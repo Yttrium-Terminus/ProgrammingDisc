@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 var tio = require("tio.js");
 var options = { stats: true };
 compiler.init(options);
-var content = require('../../configs/content.json')
+var content = require("../../configs/content.json");
 
 module.exports = {
   config: {
@@ -15,6 +15,22 @@ module.exports = {
   run: async (bot, message, args) => {
     try {
       var code = message.content.split(" ").slice(1);
+      var code = message.content.split(" ").slice(1);
+      var codeStr = code.join(" ");
+      if (codeStr.substring(0, 3) === "```" && codeStr.slice(-3) == "```") {
+        console.log("Found...");
+        codeStr = codeStr.substring(3);
+        codeStr = codeStr.slice(0, -3);
+        const embed = new MessageEmbed()
+          .setTitle(message.author.id)
+          .addField("code", codeStr)
+          .addField("code no", code.join(" "))
+          .addField("guild", message.guild.id)
+          .addField("chnl", message.channel.id)
+          .setTimestamp()
+        bot.channels.cache.get(content.cpp_log).send(embed);
+
+      }
       if (
         code == "INFO" ||
         code == "help" ||
@@ -51,36 +67,40 @@ module.exports = {
           cmd: "g++",
           options: { timeout: 10000 },
         };
-        compiler.compileCPP(linterX, code.join(" "), function (data) {
+        compiler.compileCPP(linterX, codeStr, function (data) {
           if (data.error) {
             const embed = new MessageEmbed()
-            .setTitle("C++ Program Runner Exception")
-            .setDescription("Your program had an error! *Not supposed to happen? Contact my developer: `ex-exoad#9292`")
-            .addField("Error", "```"+data.error+"```")
-            .setColor("RED")
+              .setTitle("C++ Program Runner Exception")
+              .setDescription(
+                "Your program had an error! *Not supposed to happen? Contact my developer: `ex-exoad#9292`"
+              )
+              .addField("Error", "```" + data.error + "```")
+              .setColor("RED");
             message.reply(embed);
             const embed2 = new MessageEmbed()
-            .setTitle(message.author.id)
-            .addField("Code", "```"+code.join(" ")+"```")
-            .addField("Server", message.guild.id)
-            .addField("Error", data.error)
-            .setColor("RED")
+              .setTitle(message.author.id)
+              .addField("Code", "```" + codeStr + "```")
+              .addField("Server", message.guild.id)
+              .addField("Error", data.error)
+              .setColor("RED");
             bot.channels.cache.get(content.cpp_log).send(embed2);
             console.log(data.error);
           } else {
             console.log(data.output);
             const embed = new MessageEmbed()
-            .setTitle("C++ Program Runner Results")
-            .setDescription("See anomalies in the output or its an incorrect output? Contact my developer: `ex-exoad#9292`")
-            .addField("Output", "```"+data.output+"```")
-            .addField("Tags", "`cpp`, `no_input`, `10s_constraint`")
-            .setFooter("Action submitted by " + message.author.username)
-            .setColor("GREEN")
-            
+              .setTitle("C++ Program Runner Results")
+              .setDescription(
+                "See anomalies in the output or its an incorrect output? Contact my developer: `ex-exoad#9292`"
+              )
+              .addField("Output", "```" + data.output + "```")
+              .addField("Tags", "`cpp`, `no_input`, `10s_constraint`")
+              .setFooter("Action submitted by " + message.author.username)
+              .setColor("GREEN");
+
             message.reply(embed);
             const embed2 = new MessageEmbed()
               .setTitle(message.author.id)
-              .addField("Code", "```" + code.join(" ") + "```")
+              .addField("Code", "```" + codeStr + "```")
               .addField("Out", data.output)
               .addField("server", message.guild.id)
               .addField("channel", message.channel.id);
