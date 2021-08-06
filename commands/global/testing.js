@@ -107,7 +107,7 @@ module.exports = {
         compiler.init(options);
         var linterX = {
           OS: token.os,
-          cmd: "g++",
+          cmd: token.cmd_cpp,
           options: { timeout: 15000 },
         };
         const embed4 = new MessageEmbed()

@@ -81,7 +81,7 @@ module.exports = {
         compiler.init(options);
         var linterX = {
           OS: token.os,
-          cmd: "g++",
+          cmd: token.cmd_cpp,
           options: { timeout: 10000 },
         };
         compiler.compileCPP(linterX, codeStr, function (data) {
