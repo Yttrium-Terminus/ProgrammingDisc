@@ -54,7 +54,7 @@ module.exports = {
           )
           .addField(
             "Additional Notes",
-            "You may use markdown code syntax with \`\`\` but do not follow it with `cpp` or `c`"
+            "You may use markdown code syntax with \`\`\` but do not follow it with cpp or c"
           )
           .addField("[additional_usages]", "`help`")
           .setFooter("Pre-build");
