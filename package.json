@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/Yttrium-Terminus/ProgrammingDisc#readme",
   "dependencies": {
-    "JSCPP": "^2.0.9",
+    "compilex": "^0.7.4",
     "discord.js": "^12.5.3",
     "express": "^4.17.1",
     "tio.js": "^1.1.0"

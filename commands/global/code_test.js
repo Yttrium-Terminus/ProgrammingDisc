@@ -1,17 +1,20 @@
-var JSCPP = require("JSCPP");
+var compiler = require("compilex");
 var tio = require("tio.js");
+var options = { stats: true };
+compiler.init(options);
 
 module.exports = {
   config: {
-    name: `code`,
+    name: `cpp`,
     category: "",
     description: "",
-    aliases: [``],
+    aliases: [`c++`, `gcc`, `g++`, `cpluplus`],
   },
   run: async (bot, message, args) => {
     var code = message.content.split(" ").slice(1);
-    message.channel.send(
-      "Enter your input within the next 10 seconds (Type `ex!` to exit): "
+    var linterX = { OS: "windows", cmd: "g++", options: { timeout: 10000 } };
+    message.reply(
+      "Type in your input: (Type `ex$!` for no input or type `tr$!` to quit) **10 SECOND LIMIT**"
     );
     message.channel
       .awaitMessages((m) => m.author.id == message.author.id, {
@@ -19,27 +22,45 @@ module.exports = {
         time: 10000,
       })
       .then((collected) => {
-        if (collected.first().content.toLowerCase() == "ex!")
-          message.channel.send(
-            "Operation Timeout by `" + message.author.username + "`"
+        if (collected.first().content.toLowerCase() == "ex$!") {
+          message.channel.send("**NO INPUT**");
+          compiler.compileCPP(
+            linterX,
+            code.join(" "),
+            function (data) {
+              if (data.error) {
+                message.channel.send(
+                  "**An Error Occured!**\n```" + data.error + "```"
+                );
+                console.log(data.error);
+              } else {
+                console.log(data.output);
+                message.channel.send(JSON.parse(JSON.stringify(data.output)));
+              }
+            }
           );
-        else {
-          var output = "";
-          var config = {
-            stdio: {
-              write: function (s) {
-                output += s;
-              },
-            },
-            unsigned_overflow: "error", // can be "error"(default), "warn" or "ignore"
-          };
+        } else if (collected.first().content.toLowerCase() == "tr$!") {
           message.channel.send(
-            JSCPP.run(code.join(" "), collected, config) + " " + output
+            "Operation Terminated by " + message.author.username
+          );
+        } else {
+          compiler.compileCPPWithInput(
+            linterX, code.join(" "), collected.toString(), function (data) {
+              if (data.error) {
+                message.channel.send(
+                  "**An Error Occured!**\n```" + data.error + "```"
+                );
+                console.log(data.error);
+              } else {
+                console.log(data.output);
+                message.channel.send(JSON.parse(JSON.stringify(data.output)));
+              }
+            }
           );
         }
       })
       .catch(() => {
-        message.reply("No answer after 10 seconds, operation canceled.");
+        message.reply("Operation Cancelled automatically after 10 seconds");
       });
   },
 };

@@ -1,6 +1,5 @@
 const { Client, Collection, Discord, MessageEmbed } = require("discord.js");
 const bot = new Client();
-const JSCP = require('JSCPP');
 
 const express = require("express");
 const app = express();
