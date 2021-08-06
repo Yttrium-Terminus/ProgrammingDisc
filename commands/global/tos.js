@@ -17,7 +17,7 @@ module.exports = {
       .addField("Data & Logging", "All code processed and executed will be logged along with the input(s) if there are any. This is to check for the security and integrity of the code")
       .addField("Punishments", "Failure to follow any conduct specified and not specified will result in a ban from the usage of the bot.")
       .setFooter("Thank you for understanding.")
-      message.channel.setDescription(embed);
+      message.channel.send(embed);
     } catch (e) {
       console.log(e);
     }
