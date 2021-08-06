@@ -62,6 +62,45 @@ module.exports = {
           .addField("[additional_usages]", "`help`")
           .setFooter("Pre-build");
         message.channel.send(embed);
+      } else if (
+        code == undefined ||
+        !code ||
+        code == null ||
+        code == "" ||
+        code == " "
+      ) {
+        const embed = new MessageEmbed()
+          .setTitle("C++ Runner with Input")
+          .setDescription(
+            "This is a basic C++ interpreter that **takes input**)"
+          )
+          .addField(
+            "Usage",
+            "```" + content.prefix + "icpp [user_code_here]```"
+          )
+          .addField(
+            "user_code_here",
+            "You will input your C++ Code here or command parameters like this one (see [additional_usages])"
+          )
+          .addField(
+            "Example Usage",
+            "**COMMAND**\n```cpp\n$icpp #include <iostream>\nusing namespace std;\nint main() {\n int a;\ncin >> a;\n cout << a << endl;\n}```\n**OUTPUT**\n`Hello World!`"
+          )
+          .addField(
+            "Additional parameters",
+            "After you have entered your code, you must specify your input, you will have 10 seconds to make a decision before your code will be invalidated. Then you must include your input in **ONE MESSAGE**"
+          )
+          .addField(
+            "Constraints",
+            "Do to security reasons, all program runtime constraints for with input will be 15 seconds, if your program runs longer, it will be automatically killed"
+          )
+          .addField(
+            "Additional Notes [PLEASE READ]",
+            "It is best to run this command in the same channel as someone else!\nMake sure to always include a line after the command\nYou may use markdown code syntax but do not follow it with `cpp` or `c`"
+          )
+          .addField("[additional_usages]", "`help`")
+          .setFooter("Pre-build");
+        message.channel.send(embed);
       } else {
         var options = { stats: true };
         compiler.init(options);
