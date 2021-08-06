@@ -58,7 +58,7 @@ module.exports = {
         message.channel.send(embed);
       } else if (code == undefined || !code || code == null || code == "" || code == " ") {
         const embed = new MessageEmbed()
-        .setTitle("C++ Program Runner Exception")
+        .setTitle("C++ Program Runner | Exception Caught")
         .setDescription("No Arguments/Parameters found, can't proceed. Check command `$cpp help` for more info on this command\n*Doesn't seem right? Contact my developer: `ex-exoad#9292`*")
         
         .setColor("RED")
@@ -75,7 +75,7 @@ module.exports = {
         compiler.compileCPP(linterX, codeStr, function (data) {
           if (data.error) {
             const embed = new MessageEmbed()
-              .setTitle("C++ Program Runner Exception")
+              .setTitle("C++ Program Runner | Exception Caught")
               .setDescription(
                 "Your program had an error! *Not supposed to happen? Contact my developer: `ex-exoad#9292`"
               )
@@ -93,7 +93,7 @@ module.exports = {
           } else {
             console.log(data.output);
             const embed = new MessageEmbed()
-              .setTitle("C++ Program Runner Results")
+              .setTitle("C++ Program Runner | Success!")
               .setDescription(
                 "See anomalies in the output or its an incorrect output? Contact my developer: `ex-exoad#9292`"
               )

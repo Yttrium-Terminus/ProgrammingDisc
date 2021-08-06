@@ -65,7 +65,13 @@ module.exports = {
           message.channel.send(embed);
           bot.channels.cache.get(content.editor_log).send(embed);
         }
-      }
+      } else if(code == "" || code == " " || code == undefined || code == null || !code) {
+        const embed = new MessageEmbed()
+        .setTitle("Code Language Viewer | Exception Caught")
+        .setDescription("Hmmm, no arguments and parameters were passed and this command needs arguments! Use `help` after the command to know more about this command!\n *Is this not correct? Contact my developer: ex-exoad#9292*")
+        .setColor("RED")
+        message.channel.send(embed);
+      } 
     } catch (e) {
       console.log(e);
     }
