@@ -1,8 +1,6 @@
 var compiler = require("compilex");
 const { MessageEmbed } = require("discord.js");
 var tio = require("tio.js");
-var options = { stats: true };
-compiler.init(options);
 var content = require("../../configs/content.json");
 
 module.exports = {
@@ -14,7 +12,6 @@ module.exports = {
   },
   run: async (bot, message, args) => {
     try {
-      var code = message.content.split(" ").slice(1);
       var code = message.content.split(" ").slice(1);
       var codeStr = code.join(" ");
       if (codeStr.substring(0, 3) === "```" && codeStr.slice(-3) == "```") {
@@ -35,9 +32,7 @@ module.exports = {
         code == "INFO" ||
         code == "help" ||
         code == "info" ||
-        code == "HELP" ||
-        code == undefined ||
-        !code
+        code == "HELP"
       ) {
         const embed = new MessageEmbed()
           .setTitle("C++ Runner withOUT Input")
@@ -61,7 +56,17 @@ module.exports = {
           .addField("[additional_usages]", "`help`")
           .setFooter("Pre-build");
         message.channel.send(embed);
-      } else {
+      } else if (code == undefined || !code || code == null || code == "" || code == " ") {
+        const embed = new MessageEmbed()
+        .setTitle("C++ Program Runner Exception")
+        .setDescription("No Arguments/Parameters found, can't proceed. Check command `$cpp help` for more info on this command\n*Doesn't seem right? Contact my developer: `ex-exoad#9292`*")
+        
+        .setColor("RED")
+
+        message.channel.send(embed);
+      } else if(code) {
+        var options = { stats: true };
+        compiler.init(options);
         var linterX = {
           OS: "windows",
           cmd: "g++",

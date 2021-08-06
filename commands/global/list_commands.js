@@ -14,7 +14,7 @@ module.exports = {
       .setTitle("Commands List")
       .setDescription("Here you will find all the commands.\n**Note:** Commands with the letter `i` infront followed by its programming lang means that command is used for whne programs need input")
       .addField("C++", "```icpp, cpp```")
-      .addField("Others", "```ping, help, tos```")
+      .addField("Others", "```ping, help, tos, editor```")
       .setFooter("2021-2022")
       message.channel.send(embed);
     } catch (e) {
