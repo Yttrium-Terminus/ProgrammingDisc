@@ -123,7 +123,7 @@ module.exports = {
               errors: ["time"],
             })
             .then((message) => {
-              message = message.first();
+              // message = message.first();
               message.channel.send( "M " + message.toString());
               compiler.compileCPPWithInput(
                 linterX,
