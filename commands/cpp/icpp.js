@@ -123,12 +123,11 @@ module.exports = {
               errors: ["time"],
             })
             .then((message) => {
-              message = message.first();
               message.channel.send(message.toString());
               compiler.compileCPPWithInput(
                 linterX,
                 codeStr,
-                message.toString(),
+                message.first().toString(),
                 function (data) {
                   const embed = new MessageEmbed()
                     .setTitle("C++ Program Runner (with inputs) | Success!")
@@ -138,7 +137,7 @@ module.exports = {
                     .addField("OUTPUT (stdout)", "```" + data.output.toString() + "```")
                     .addField(
                       "Input(s) (stdin)",
-                      "```" + message.toString() + "```"
+                      "```" + message.first().toString() + "```"
                     )
                     .addField("Tags", "`15s_constraint`,`c++`,`withinput`")
                     .setColor("GREEN")
