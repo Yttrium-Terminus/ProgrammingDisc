@@ -91,7 +91,7 @@ module.exports = {
             )
             .addField(
               "Example Usage",
-              "**COMMAND**\n```cpp\n$icpp #include <iostream>\nusing namespace std;\nint main() {\n int a;\n  cin >> a;\n cout << a << endl;\n}```\n**Input | Ouput (stdout)**\n`4 | 4`"
+              "**COMMAND**\n```cpp\n$icpp #include <iostream>\nusing namespace std;\nint main() {\n int a;\n cin >> a;\n cout << a << endl;\n}```\n**Input | Ouput (stdout)**\n`4 | 4`"
             )
             .addField(
               "Additional parameters",
