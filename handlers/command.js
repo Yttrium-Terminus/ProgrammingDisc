@@ -19,6 +19,6 @@ module.exports = (bot) => {
     "global",
     "extra",
     "cpp",
-    "java"
+    "python"
   ].forEach((x) => load(x));
 };

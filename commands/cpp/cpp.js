@@ -85,6 +85,9 @@ module.exports = {
           options: { timeout: 10000 },
         };
         compiler.compileCPP(linterX, codeStr, function (data) {
+          var out;
+          if(data.output == undefined || !data.output) 
+            out = "Unhandled Exception | Contact my developer";
           if (data.error) {
             const embed = new MessageEmbed()
               .setTitle("C++ Program Runner | Exception Caught")
@@ -109,7 +112,7 @@ module.exports = {
               .setDescription(
                 "See anomalies in the output or its an incorrect output? Contact my developer: `ex-exoad#9292`"
               )
-              .addField("Output", "```" + data.output + "```")
+              .addField("Output", "```" + out + "```")
               .addField("Tags", "`cpp`, `no_input`, `10s_constraint`")
               .setFooter("Action submitted by " + message.author.username)
               .setColor("GREEN");
