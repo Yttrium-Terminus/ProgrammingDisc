@@ -123,6 +123,8 @@ module.exports = {
               .addField("channel", message.channel.id);
             bot.channels.cache.get(content.cpp_log).send(embed2);
           }
+        }).catch(() => {
+          message.channel.send("Operation Timed out.");
         });
       }
     } catch (e) {
