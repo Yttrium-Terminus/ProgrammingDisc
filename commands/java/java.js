@@ -43,7 +43,7 @@ module.exports = {
           .setDescription(
             "This is a simple Java Program runner that **DOES NOT TAKE INPUT**. It will use the latest Java SE version"
           )
-          .addField("Usage", "```" + content.prefix + "java [user_code]```")
+          .addField("Usage", "```" + content.prefix + "java [user_code] ```")
           .addField(
             "[user_code]",
             "Here you will be able to put your code here"
@@ -52,7 +52,7 @@ module.exports = {
             "Example Usage",
             "```java\n" +
               content.prefix +
-              'java public class Main {\n public static void main(String[] args) throws Exception {\n System.out.print("Hello World!");\n}'
+              'java public class Main {\n public static void main(String[] args) throws Exception {\n System.out.print("Hello World!");\n}```'
           )
           .addField("Constraints", "`Time Limit:` 10 seconds\n")
           .addField(
