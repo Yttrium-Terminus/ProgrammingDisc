@@ -24,7 +24,7 @@ module.exports = {
           "[Click Here](https://github.com/yourWaifu/sleepy-discord)",
           true
         )
-        .addField("Languages Supported", "`C++`")
+        .addField("Languages Supported", "`C++, Python, C`")
         .setColor("RANDOM")
         .setFooter(":D")
         message.channel.send(embed);
