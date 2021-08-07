@@ -135,7 +135,7 @@ module.exports = {
                     .setDescription(
                       "Your program was executed properly!\n*Is this not correct and is an anomaly? Contact my developer: ex-exoad#9292`"
                     )
-                    .addField("OUTPUT (stdout)", "```" + data.output + "```")
+                    .addField("OUTPUT (stdout)", "```" + data.output.toString() + "```")
                     .addField(
                       "Input(s) (stdin)",
                       "```" + message.toString() + "```"
