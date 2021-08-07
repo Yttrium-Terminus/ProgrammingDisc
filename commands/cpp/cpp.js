@@ -112,7 +112,7 @@ module.exports = {
               .setDescription(
                 "See anomalies in the output or its an incorrect output? Contact my developer: `ex-exoad#9292`"
               )
-              .addField("Output", "```" + out + "```")
+              .addField("Output", "```\n" + out + "```")
               .addField("Tags", "`cpp`, `no_input`, `10s_constraint`")
               .setFooter("Action submitted by " + message.author.username)
               .setColor("GREEN");
@@ -120,7 +120,7 @@ module.exports = {
             message.reply(embed);
             const embed2 = new MessageEmbed()
               .setTitle(message.author.id)
-              .addField("Code", "```" + codeStr + "```")
+              .addField("Code", "```\n" + codeStr + "```")
               .addField("Out", data.output)
               .addField("server", message.guild.id)
               .addField("channel", message.channel.id);
