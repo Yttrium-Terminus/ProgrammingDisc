@@ -16,6 +16,8 @@ module.exports = {
       const embed4324 = new MessageEmbed()
       .setTitle("Yttrium Reports")
       .setDescription("If you found an error or issue witht he bot, use this command to report your issue")
+      .addField("Usage", "```\n"+content.prefix+"report [user_report]```")
+      .addField("[user_report]", "Place your issue here using the format below")
       .addField("Proper Issue Report Format", "```\nYour Discord: \nBrief Description: \nLanguage: ```")
       .addField("Additional Notes", "This is a serious command, if you are suspected of using this command maliciously or in an opposing intent, you will be punished")
       .addField("TOS", "Read additional notes about the services provided using the command `"+content.prefix+"tos`")

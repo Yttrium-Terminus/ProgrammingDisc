@@ -121,7 +121,7 @@ module.exports = {
             .setDescription(
               "Enter your inputs for your program below. You have a 10 second window.\n*Program shouldn't have input? Try using the command `" +
                 content.prefix +
-                "cpp`! Or contact my developer: ex-exoad#9292*"
+                "cpp`! Or place a report using `"+content.prefix+"report`"
             )
             .setColor("YELLOW");
 
@@ -142,7 +142,7 @@ module.exports = {
                     const embed = new MessageEmbed()
                       .setTitle("C++ Program Runner (with inputs) | Success!")
                       .setDescription(
-                        "Your program was executed properly!\n*Is this not correct and is an anomaly? Contact my developer: ex-exoad#9292`"
+                        "Your program was executed properly!\n*Is this not correct and is an anomaly? Place a report using `"+content.prefix+"report`"
                       )
                       .addField(
                         "OUTPUT (stdout)",

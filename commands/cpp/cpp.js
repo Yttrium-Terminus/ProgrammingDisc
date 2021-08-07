@@ -70,7 +70,7 @@ module.exports = {
         const embed = new MessageEmbed()
           .setTitle("C++ Program Runner | Exception Caught")
           .setDescription(
-            "No Arguments/Parameters found, can't proceed. Check command `$cpp help` for more info on this command\n*Doesn't seem right? Contact my developer: `ex-exoad#9292`*"
+            "No Arguments/Parameters found, can't proceed. Check command `$cpp help` for more info on this command\n*Doesn't seem right? Place a report using `"+content.prefix+"report`*"
           )
 
           .setColor("RED");
@@ -92,7 +92,7 @@ module.exports = {
             const embed = new MessageEmbed()
               .setTitle("C++ Program Runner | Exception Caught")
               .setDescription(
-                "Your program had an error! *Not supposed to happen? Contact my developer: `ex-exoad#9292`"
+                "Your program had an error! *Not supposed to happen? Place a report using `"+content.prefix+"report`"
               )
               .addField("Error", "```" + data.error + "```")
               .setColor("RED");
@@ -110,7 +110,9 @@ module.exports = {
             const embed = new MessageEmbed()
               .setTitle("C++ Program Runner | Success!")
               .setDescription(
-                "See anomalies in the output or its an incorrect output? Contact my developer: `ex-exoad#9292`"
+                "See anomalies in the output or its an incorrect output? Place a report using `" +
+                  content.prefix +
+                  "report`"
               )
               .addField("Output", "```\n" + out + "```")
               .addField("Tags", "`cpp`, `no_input`, `10s_constraint`")
