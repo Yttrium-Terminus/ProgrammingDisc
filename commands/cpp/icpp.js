@@ -124,7 +124,7 @@ module.exports = {
             })
             .then((message) => {
               message = message.first();
-              message.channel.send( "M" + message);
+              message.channel.send( "M " + message.toString());
               compiler.compileCPPWithInput(
                 linterX,
                 codeStr,
