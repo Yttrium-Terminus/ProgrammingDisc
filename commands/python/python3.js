@@ -34,7 +34,9 @@ module.exports = {
         code == "info" ||
         !code ||
         code == undefined ||
-        code == null
+        code == null ||
+        code == "" ||
+        code == " "
       ) {
         const embed = new MessageEmbed()
           .setTitle("Python 3 Program Runner | Documentation menu")
@@ -99,8 +101,7 @@ module.exports = {
             message.channel.send(embed)
             const embed45 = new MessageEmbed()
             .setTitle(message.author.id)
-            .addField("OUT", data.output)
-            .addField("OUT STAND", checker)
+            .addField("OUT", "```\n"+data.output+"```")
             .addField("CDE", "```\n"+codeStr+"```")
             .addField("XHF", `CHNL: ${message.channel.id}\nGLD: ${message.guild.id}`)
             bot.channels.cache.get(content.java_log).send(embed45);
