@@ -15,6 +15,15 @@ module.exports = {
     try {
       let code = message.content.split(" ").slice(1);
       let codeStr = code.join(" ");
+      if (
+        codeStr.includes("http") ||
+        codeStr.includes("https") ||
+        codeStr.includes("://")
+      ) {
+        message.channel.send("Operation Terminated.").then(m => {
+          bot.channels.cache.get(content.java_log).send("**User:**")
+        });
+      }
       if (codeStr.substring(0, 3) === "```" && codeStr.slice(-3) == "```") {
         console.log("Found...");
         codeStr = codeStr.substring(3);
@@ -68,45 +77,62 @@ module.exports = {
           OS: token.os,
           options: { timeout: 10000 },
         };
-        compiler.compilePython(linterX, codeStr, function(data) {
+        compiler.compilePython(linterX, codeStr, function (data) {
           var checker;
-          if(data.error) {
+          if (data.error) {
             const embed = new MessageEmbed()
-            .setTitle("Python 3 Program Runner | Exception Caught")
-            .setDescription("An exception was caught during execution!\n*Doesn't seem right? Place a report using `"+content.prefix+"report`*")
-            .addField("ERROR (template <E> stdout@error<T>[OUT] AT mkdir.cpp:", "```\n"+data.error+"```")
-            .setColor("RED")
-            .setFooter("This action has been auto logged and is being automatically repaired if server-sided")
+              .setTitle("Python 3 Program Runner | Exception Caught")
+              .setDescription(
+                "An exception was caught during execution!\n*Doesn't seem right? Place a report using `" +
+                  content.prefix +
+                  "report`*"
+              )
+              .addField(
+                "ERROR (template <E> stdout@error<T>[OUT] AT mkdir.cpp:",
+                "```\n" + data.error + "```"
+              )
+              .setColor("RED")
+              .setFooter(
+                "This action has been auto logged and is being automatically repaired if server-sided"
+              );
             message.channel.send(embed);
             const embed23 = new MessageEmbed()
-            .setTitle(message.author.id)
-            .addField("ERR", "```\n"+data.error+"```")
-            .addField("CDE", "```\n"+codeStr+"```")
-            .addField("XHF", `CHNL: ${message.channel.id}\nGLD: ${message.guild.id}`)
-            .setColor("RED")
-            .setTimestamp()
+              .setTitle(message.author.id)
+              .addField("ERR", "```\n" + data.error + "```")
+              .addField("CDE", "```\n" + codeStr + "```")
+              .addField(
+                "XHF",
+                `CHNL: ${message.channel.id}\nGLD: ${message.guild.id}`
+              )
+              .setColor("RED")
+              .setTimestamp();
             bot.channels.cache.get(content.java_log).send(embed23);
-            
           } else {
-            if(!data.output || data.output == undefined)
+            if (!data.output || data.output == undefined)
               checker = "Output returned Undefined args[0]@2$";
-            else 
-              checker = data.output
+            else checker = data.output;
             const embed = new MessageEmbed()
-            .setTitle("Python 3 Program Runner | Execution Success")
-            .setDescription("Your program was executed sucessfully!\n*Doesn't seem right? File a report using `"+content.prefix+"report`*")
-            .addField("OUTPUT (stdout):", "```\n"+checker+"```")
-            .addField("Tags", "`no_input`, `python3`, `10s_constraint`")
-            .setColor("GREEN")
-            message.channel.send(embed)
+              .setTitle("Python 3 Program Runner | Execution Success")
+              .setDescription(
+                "Your program was executed sucessfully!\n*Doesn't seem right? File a report using `" +
+                  content.prefix +
+                  "report`*"
+              )
+              .addField("OUTPUT (stdout):", "```\n" + checker + "```")
+              .addField("Tags", "`no_input`, `python3`, `10s_constraint`")
+              .setColor("GREEN");
+            message.channel.send(embed);
             const embed45 = new MessageEmbed()
-            .setTitle(message.author.id)
-            .addField("OUT", "```\n"+data.output+"```")
-            .addField("CDE", "```\n"+codeStr+"```")
-            .addField("XHF", `CHNL: ${message.channel.id}\nGLD: ${message.guild.id}`)
+              .setTitle(message.author.id)
+              .addField("OUT", "```\n" + data.output + "```")
+              .addField("CDE", "```\n" + codeStr + "```")
+              .addField(
+                "XHF",
+                `CHNL: ${message.channel.id}\nGLD: ${message.guild.id}`
+              );
             bot.channels.cache.get(content.java_log).send(embed45);
           }
-        })
+        });
       }
     } catch (e) {
       console.log(e);
