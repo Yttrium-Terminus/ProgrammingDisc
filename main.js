@@ -27,6 +27,8 @@ bot.on("message", (message) => {
 
     message.channel.send({ embed });
   }
+  if(message.content == "interprium")
+    message.channel.send("My prefix is: " + prefix);
 });
 
 const { TOKEN } = require("./configs/token.json");
